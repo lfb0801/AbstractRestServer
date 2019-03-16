@@ -1,7 +1,7 @@
 package handlers;
 
 import models.User;
-import repositories.UserRepository;
+import repositories.IUserRepository;
 
-public class UserHandler extends CRUDHandler<User, Integer, UserRepository>{
+public class UserHandler extends CRUDHandler<User, Integer, IUserRepository>{
 }
