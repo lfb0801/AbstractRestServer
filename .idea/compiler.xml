@@ -12,5 +12,8 @@
         <module name="rest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hateaos" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

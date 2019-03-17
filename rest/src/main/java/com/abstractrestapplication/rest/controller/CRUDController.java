@@ -1,46 +1,73 @@
 package com.abstractrestapplication.rest.controller;
 
-import handlers.CRUDHandler;
+import com.abstractrestapplication.rest.hateaos.HateaosResponse;
+import com.abstractrestapplication.rest.hateaos.HateaosUtil;
+import handlers.CRUDService;
+import lombok.Setter;
+import models.PersistenceEntity;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.Collection;
 
-public abstract class CRUDController<T, Identifier extends Serializable> {
+@RestController
+public abstract class CRUDController<T extends PersistenceEntity, Identifier extends Serializable> {
 
-    private static CRUDHandler handler;
+    @Setter
+    private CRUDService<T, Identifier> service;
 
-    public CRUDController(CRUDHandler _handler){
-        handler = _handler;
+    public abstract void initService();
+
+    /**
+     * Use this method to return the classname of the instance.
+     *
+     * @return class of the instance.
+     */
+    public abstract Class<? extends CRUDController<T, Identifier>> getClazz();
+
+
+    /**
+     * Retrieve the options for this rest service.
+     *
+     * @return a header with allowed options.
+     */
+    @RequestMapping(value = "", method = RequestMethod.OPTIONS)
+    public ResponseEntity<String> options() {
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("allow", "HEAD,GET,PUT,DELETE,POST,OPTIONS");
+        return new ResponseEntity<>(map, HttpStatus.OK);
     }
 
     @PostMapping("/")
-    public ResponseEntity<String> create(@RequestParam T entity){
-        handler.create(entity);
+    public HttpEntity<String> create(@RequestParam final T entity) {
+        service.create(entity);
         return new ResponseEntity<String>("Object created", HttpStatus.OK);
     }
 
     @GetMapping("/")
-    public ResponseEntity<T> get(@RequestParam Identifier id){
-        return new ResponseEntity<>((T) handler.read(id), HttpStatus.OK);
+    public HttpEntity<HateaosResponse> get(@RequestParam final Identifier id) {
+        final T result = service.read(id);
+        return HateaosUtil.build(result);
     }
 
     @GetMapping("/")
-    public ResponseEntity<Collection<T>> getAll(){
-        return new ResponseEntity<>((Collection<T>) handler.readAll(), HttpStatus.OK);
+    public HttpEntity<HateaosResponse> getAll() {
+        return new ResponseEntity<>((HateaosResponse) service.readAll(), HttpStatus.OK);
     }
 
     @PutMapping("/")
-    public ResponseEntity<String> update(@RequestParam T entity){
-        handler.update(entity);
-        return new ResponseEntity<String>("Object updated", HttpStatus.OK);
+    public HttpEntity<HateaosResponse> update(@RequestParam final T entity) {
+        service.update(entity);
+        return HateaosUtil.build(entity);
     }
 
     @DeleteMapping("/")
-    public ResponseEntity<String> delete(@RequestParam Identifier id){
-        handler.delete(handler.read(id));
-        return new ResponseEntity<String>("Object deleted", HttpStatus.OK);
+    public HttpEntity<HateaosResponse> delete(@PathVariable("id") final Identifier id) {
+        service.delete(service.read(id));
+        return HateaosUtil.build(id);
     }
 }

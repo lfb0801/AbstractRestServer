@@ -1,15 +1,29 @@
 package handlers;
 
-import com.j256.ormlite.dao.Dao;
+import interfaces.IRestRepository;
+import lombok.Setter;
+import models.PersistenceEntity;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class CRUDHandler<T, Identifier extends Serializable, Repo extends Dao> {
+public abstract class CRUDService<T extends PersistenceEntity, Identifier> {
 
-    private Repo repo;
+    @Setter
+    private IRestRepository repo;
+
+    /**
+     * Use this method to set the repository.
+     */
+    public abstract void initRepository();
+
+    /**
+     * Use this method to return the classname of the instance.
+     *
+     * @return class of the instance.
+     */
+    public abstract Class<? extends CRUDService<T, Identifier>> getClazz();
 
     public void create(T entity) {
         try {

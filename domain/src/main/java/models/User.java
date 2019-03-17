@@ -1,9 +1,6 @@
 package models;
 
-import lombok.Getter;
-
-@Getter
-public class User {
+public class User extends PersistenceEntity<Integer>{
 
     String firstName;
     String lastName;
