@@ -10,9 +10,9 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>domain</module>
-        <module>logic</module>
         <module>persistence</module>
-        <module>hateaos</module>
+        <module>logic</module>
+        <module>utilities/hateoas</module>
     </modules>
 
     <dependencies>
@@ -21,6 +21,12 @@
             <groupId>com.j256.ormlite</groupId>
             <artifactId>ormlite-jdbc</artifactId>
             <version>3.4</version>
+        </dependency>
+
+        <dependency>
+            <artifactId>hateoas</artifactId>
+            <groupId>AbstractRestApplication</groupId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.hateoas/spring-hateoas -->
@@ -35,7 +41,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.6</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
