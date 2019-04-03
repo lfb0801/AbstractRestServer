@@ -1,12 +1,23 @@
 package com.abstractrestapplication.models;
 
-import com.abtractrestapplication.domain.PersistenceEntity;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.ResourceSupport;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-public class User extends PersistenceEntity<Integer> {
+public class User extends ResourceSupport {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
 
     private String firstName;
     private String lastName;
+
+    public Link getId() {
+        return new Link(id.toString());
+    }
 }

@@ -15,9 +15,6 @@ public abstract class PersistenceEntity<Identifier extends Serializable> extends
     @GeneratedValue
     private Identifier id;
 
-    public PersistenceEntity() {
-    }
-
     public Link getId() {
         return new Link(id.toString());
     }

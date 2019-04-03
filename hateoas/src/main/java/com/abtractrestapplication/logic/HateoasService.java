@@ -2,13 +2,18 @@ package com.abtractrestapplication.logic;
 
 import com.abtractrestapplication.domain.PersistenceEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.hateoas.ResourceSupport;
 
 import java.util.Collection;
 import java.util.Optional;
 
-public abstract class HateoasService<T extends PersistenceEntity, Identifier> {
+public abstract class HateoasService<T extends ResourceSupport, Identifier> {
 
     private PagingAndSortingRepository<T, Identifier> repo;
+
+    public HateoasService(PagingAndSortingRepository<T, Identifier> _repo) {
+        this.repo = _repo;
+    }
 
     /**
      * Use this method to return the classname of the instance.

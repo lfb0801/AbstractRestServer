@@ -13,10 +13,6 @@ public class UserController extends HateoasController<User, Integer> {
 
     private UserService service;
 
-    public UserController() {
-        //  needed for autowiring
-    }
-
     @Autowired
     public UserController(UserService service) {
         this.service = service;

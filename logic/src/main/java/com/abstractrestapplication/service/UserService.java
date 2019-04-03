@@ -11,11 +11,12 @@ import com.abstractrestapplication.repositories.IUserRepository;
 public class UserService extends HateoasService<User, Integer> {
 
     @Setter
-    private final IUserRepository repository;
+    private IUserRepository repository;
 
     @Autowired
-    public UserService(IUserRepository repository) {
-        this.repository = repository;
+    public UserService(IUserRepository _repository) {
+        super(_repository);
+        this.repository = _repository;
     }
 
     @Override

@@ -2,10 +2,10 @@ package com.abtractrestapplication.rest;
 
 import com.abtractrestapplication.annotations.WrapWithLink;
 import com.abtractrestapplication.logic.HateoasService;
-import com.abtractrestapplication.domain.PersistenceEntity;
 import com.abtractrestapplication.util.HateoasResponse;
 import com.abtractrestapplication.util.HateoasUtil;
 import org.assertj.core.util.Lists;
+import org.springframework.hateoas.ResourceSupport;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class HateoasController<T extends PersistenceEntity, Identifier extends Serializable> {
+public abstract class HateoasController<T extends ResourceSupport, Identifier extends Serializable> {
 
     private HateoasService<T, Identifier> service;
 
