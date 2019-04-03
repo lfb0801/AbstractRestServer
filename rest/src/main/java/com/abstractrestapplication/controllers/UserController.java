@@ -14,8 +14,9 @@ public class UserController extends HateoasController<User, Integer> {
     private UserService service;
 
     @Autowired
-    public UserController(UserService service) {
-        this.service = service;
+    public UserController(UserService _service) {
+        super(_service);
+        this.service = _service;
     }
 
 

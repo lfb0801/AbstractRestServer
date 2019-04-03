@@ -23,6 +23,10 @@ public abstract class HateoasController<T extends ResourceSupport, Identifier ex
 
     private HateoasService<T, Identifier> service;
 
+    public HateoasController(HateoasService<T, Identifier> service) {
+        this.service = service;
+    }
+
     /**
      * Use this method to return the classname of the instance.
      *
