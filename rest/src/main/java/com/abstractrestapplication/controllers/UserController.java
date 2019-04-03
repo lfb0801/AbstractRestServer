@@ -5,27 +5,24 @@ import com.abstractrestapplication.service.UserService;
 import com.abstractrestapplication.models.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.hateoas.rest.HateaosController;
-
-import javax.annotation.PostConstruct;
+import com.abtractrestapplication.rest.HateoasController;
 
 @RestController
 @RequestMapping("/users")
-public class UserController extends HateaosController<User, Integer> {
+public class UserController extends HateoasController<User, Integer> {
 
-    private final UserService service;
+    private UserService service;
+
+    public UserController() {
+        //  needed for autowiring
+    }
 
     @Autowired
     public UserController(UserService service) {
         this.service = service;
     }
 
-    @Override
-    @PostConstruct
-    public void initService(){
-        setService(service);
-    }
 
     @Override
-    public Class<? extends HateaosController<User, Integer>> getClazz(){ return this.getClass(); }
+    public Class<? extends HateoasController<User, Integer>> getClazz(){ return this.getClass(); }
 }
