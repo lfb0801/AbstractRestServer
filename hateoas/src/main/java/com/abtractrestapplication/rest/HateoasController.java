@@ -1,9 +1,11 @@
 package com.abtractrestapplication.rest;
 
+import com.abtractrestapplication.annotations.WrapWithLink;
 import com.abtractrestapplication.logic.HateoasService;
 import com.abtractrestapplication.domain.PersistenceEntity;
 import com.abtractrestapplication.util.HateoasResponse;
 import com.abtractrestapplication.util.HateoasUtil;
+import org.assertj.core.util.Lists;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

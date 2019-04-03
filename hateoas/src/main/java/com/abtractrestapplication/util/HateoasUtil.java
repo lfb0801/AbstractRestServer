@@ -5,6 +5,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.servlet.http.HttpServletRequest;
+
 public final class HateoasUtil {
 
     /**
@@ -40,4 +42,15 @@ public final class HateoasUtil {
         return new HateoasResponse(object);
     }
 
+    /**
+     * Extracts the root url from a request.
+     *
+     * @param request a servlet request.
+     * @return the application root url.
+     */
+    public static String getRootUrl(final HttpServletRequest request) {
+        return request.getScheme() + "://"
+                + request.getServerName()
+                + ":" + request.getServerPort();
+    }
 }
