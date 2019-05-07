@@ -1,23 +1,42 @@
 package com.abstractrestapplication.models;
 
-import org.springframework.hateoas.Link;
+import com.abstractrestapplication.interfaces.HateoasObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.hateoas.ResourceSupport;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class User extends ResourceSupport {
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+public class User extends ResourceSupport implements HateoasObject {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Integer id;
 
-    private String firstName;
-    private String lastName;
+    @Getter
+    private String username;
 
-    public Link getId() {
-        return new Link(id.toString());
+    @Getter
+    private String password;
+
+    @Override
+    @JsonIgnore
+    public Serializable getIdentifier() {
+        return this.id;
+    }
+
+    //  login
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 }

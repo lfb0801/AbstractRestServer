@@ -1,10 +1,10 @@
 package com.abstractrestapplication.repositories;
 
-import com.abstractrestapplication.models.User;
+import com.abstractrestapplication.models.Token;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IUserRepository extends PagingAndSortingRepository<User, Integer> {
-    User findByUsername(String username);
+public interface ITokenRepository extends PagingAndSortingRepository<Token, Integer> {
+    Token findByToken(String token);
 }

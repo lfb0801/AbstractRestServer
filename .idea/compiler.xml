@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="domain" />
-        <module name="hateoas" />
         <module name="logic" />
         <module name="persistence" />
         <module name="rest" />
@@ -15,6 +14,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="hateaos" target="1.5" />
+      <module name="hateoas" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

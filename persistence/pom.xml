@@ -3,9 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.AbstractRestApplication</groupId>v
+        <groupId>com.AbstractRestApplication</groupId>
         <artifactId>main</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,11 +14,6 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>com.AbstractRestApplication</groupId>
-            <artifactId>hateoas</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>com.AbstractRestApplication</groupId>
             <artifactId>domain</artifactId>
