@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Optional;
 
+// TODO: 14-5-2019 #2
 public abstract class HateoasService<T extends ResourceSupport & HateoasObject, Identifier> {
 
     private PagingAndSortingRepository<T, Identifier> repository;
